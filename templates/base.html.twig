@@ -16,6 +16,8 @@ crossorigin="anonymous">
 SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMF
 cV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="noreferrer" />
 
+<link rel="icon" type="images/png" href="{{('/public/images/logo/logo.png') }}">
+
         {% endblock %}
 
         {% block javascripts %}
@@ -25,14 +27,20 @@ integrity="sha384-
 YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 crossorigin="anonymous"></script>
     <script
-src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"><
-/script>
+src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js">
+</script>
             {% block importmap %}{{ importmap('app') }}{% endblock %}
             {% endblock %}
     </head>
     <body>
+    {% block header %}
+    {% include 'partials/_header.html.twig' %}
+        
+    {% endblock %}
         {% block body %}
+
         <h1 class="text-center mt-5 fs-1">Bienvenue sur votre site de e-commerce ! </h1>
+
         {% endblock %}
     </body>
 </html>

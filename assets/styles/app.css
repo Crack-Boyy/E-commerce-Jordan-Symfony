@@ -1,3 +1,21 @@
 body {
-    background-color: red !important;
+    background-color: #ffffff;
+}
+
+h1 {
+    color: #DC143C;
+}
+
+h2 {
+    color: #000000
+}
+
+.nav {
+    color: #ffffff;
+}
+
+.img_logo {
+    width: 3rem;
+    height: auto;
+    
 }
