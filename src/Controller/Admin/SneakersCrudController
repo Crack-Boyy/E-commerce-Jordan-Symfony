@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Controller\Admin;
+
+use App\Entity\Sneakers;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+
+class SneakersCrudController extends AbstractCrudController
+{
+    public static function getEntityFqcn(): string
+    {
+        return Sneakers::class;
+    }
+
+    
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id')->hideOnform(),
+            TextField::new('name'),
+            TextField::new('color'),
+            TextField::new('size'),
+            ImageField::new('image')
+            ->setUploadDir('/public/images/sneakers')
+            ->setBasePath('images/sneakers'),
+            AssociationField::new('produit', Sneakers::class),
+        ];
+    }
+    
+}

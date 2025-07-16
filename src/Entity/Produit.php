@@ -32,9 +32,9 @@ class Produit
     private ?Sneakers $sneakers = null;
 
     /**
-     * @var Collection<int, streetwear>
+     * @var Collection<int, Streetwear>
      */
-    #[ORM\OneToMany(targetEntity: streetwear::class, mappedBy: 'produit')]
+    #[ORM\OneToMany(targetEntity: Streetwear::class, mappedBy: 'produit')]
     private Collection $streetwears;
 
     public function __construct()
@@ -108,14 +108,14 @@ class Produit
     }
 
     /**
-     * @return Collection<int, streetwear>
+     * @return Collection<int, Streetwear>
      */
     public function getStreetwears(): Collection
     {
         return $this->streetwears;
     }
 
-    public function addStreetwear(streetwear $streetwear): static
+    public function addStreetwear(Streetwear $streetwear): static
     {
         if (!$this->streetwears->contains($streetwear)) {
             $this->streetwears->add($streetwear);
@@ -125,10 +125,10 @@ class Produit
         return $this;
     }
 
-    public function removeStreetwear(streetwear $streetwear): static
+    public function removeStreetwear(Streetwear $streetwear): static
     {
         if ($this->streetwears->removeElement($streetwear)) {
-            // set the owning side to null (unless already changed)
+            
             if ($streetwear->getProduit() === $this) {
                 $streetwear->setProduit(null);
             }

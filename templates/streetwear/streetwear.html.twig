@@ -1,12 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Streetwear!{% endblock %}
+{% block title %}Streetwear{% endblock %}
 
 {% block body %}
-<h1 class ="text-center fs-1 mt-3">Nos Ensemble</h1>
+<h1 class ="text-center fs-1 mt-3">Nos Ensemble Jordan</h1>
+{# {% for produit in produits %} 
+        <div class="row justify-content-center">
+{% for produit in produits %}
+    <div class="col-md-4 d-flex justify-content-center mb-4">
+        <div class="card" style="width: 18rem;">
+
+{% if streetwear.produits.imageDuProduit starts with 'http' %}
+        <img src="{{streetwear.produits.imageDuProduit}}" class="card-img-top" alt="Ensemble">
+    {% else %}
+        <img src="{{asset('images/streetwear/' ~ streetwear.produits.imageDuProduit)}}" alt ="Ensemble Jordan">
+{% endif %}
 
 
+            
+            
+            <div class="card-body">
+                <h2 class="card-title">{{streetwear.produits.name}} {{streetwear.name}}</h2>
+                <h5>{{streetwear.produits.nomEtModèle}}, {{streetwear.produits.prix}}</h5>
+                <h5>{{streetwear.color}}</h5>
+                <h5>{{streetwear.size}}</h5>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{# {% endfor %}  #}
 <div class="d-flex  justify-content-center mt-4">
-
+{# {{ knp_pagination_render(sneakers) }} #}
 </div>
 {% endblock %}
