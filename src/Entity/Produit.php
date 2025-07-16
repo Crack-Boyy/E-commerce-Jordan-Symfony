@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -24,6 +26,21 @@ class Produit
 
     #[ORM\Column]
     private ?bool $boutonAjouterAuPanier = null;
+
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Sneakers $sneakers = null;
+
+    /**
+     * @var Collection<int, streetwear>
+     */
+    #[ORM\OneToMany(targetEntity: streetwear::class, mappedBy: 'produit')]
+    private Collection $streetwears;
+
+    public function __construct()
+    {
+        $this->streetwears = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +91,48 @@ class Produit
     public function setBoutonAjouterAuPanier(bool $boutonAjouterAuPanier): static
     {
         $this->boutonAjouterAuPanier = $boutonAjouterAuPanier;
+
+        return $this;
+    }
+
+    public function getSneakers(): ?Sneakers
+    {
+        return $this->sneakers;
+    }
+
+    public function setSneakers(?Sneakers $sneakers): static
+    {
+        $this->sneakers = $sneakers;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, streetwear>
+     */
+    public function getStreetwears(): Collection
+    {
+        return $this->streetwears;
+    }
+
+    public function addStreetwear(streetwear $streetwear): static
+    {
+        if (!$this->streetwears->contains($streetwear)) {
+            $this->streetwears->add($streetwear);
+            $streetwear->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStreetwear(streetwear $streetwear): static
+    {
+        if ($this->streetwears->removeElement($streetwear)) {
+            // set the owning side to null (unless already changed)
+            if ($streetwear->getProduit() === $this) {
+                $streetwear->setProduit(null);
+            }
+        }
 
         return $this;
     }
